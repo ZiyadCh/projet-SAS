@@ -80,7 +80,7 @@ void affid(struct Animal p[]) {
     printf("|Habitat:  %s   \n", p[i].habitat);
     printf("|Age:      %d   \n", p[i].age);
     printf("|Poids:    %.2fKg \n", p[i].poids);
-    printf("---------------------------\n");
+    printf("|---------------------------|\n");
   }
 }
 
@@ -106,7 +106,7 @@ void affage(struct Animal p[]) {
     printf("|Habitat:  %s   \n", p[i].habitat);
     printf("|Age:      %d   \n", p[i].age);
     printf("|Poids:    %.2fKg \n", p[i].poids);
-    printf("---------------------------\n");
+    printf("|---------------------------|\n");
   }
 }
 
@@ -133,7 +133,7 @@ void affn(struct Animal p[]) {
     printf("|Habitat:  %s   \n", p[i].habitat);
     printf("|Age:      %d   \n", p[i].age);
     printf("|Poids:    %.2fKg \n", p[i].poids);
-    printf("---------------------------\n");
+    printf("|---------------------------|\n");
   }
 }
 
@@ -141,8 +141,20 @@ void affhabitat(struct Animal p[]){
   char hab[10];
   printf("+--------------------------------------------+\n");
   printf("|Entrer Habitat:                             |\n");
-
-
+  scanf("%s",hab);
+  hab[0] = toupper(hab[0]);
+  for (int i =0;i<count;i++) {
+    if (strcmp(hab,p[i].habitat) == 0) {
+    printf("|ID:       %d \n", p[i].id);
+    printf("|Nom:      %s   \n", p[i].nom);
+    printf("|Espece:   %s   \n", p[i].espece);
+    printf("|Habitat:  %s   \n", p[i].habitat);
+    printf("|Age:      %d   \n", p[i].age);
+    printf("|Poids:    %.2fKg \n", p[i].poids);
+    printf("|---------------------------|\n");
+ 
+    }
+  }
 }
 
 void afficher(struct Animal p[]) {
