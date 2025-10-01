@@ -402,6 +402,38 @@ void supp(struct Animal p[]) {
   }
 }
 
+
+//SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs
+
+
+void stat(struct Animal p[]){
+printf("+--------------------------------------------+\n");
+printf("|                  Statistiques              |\n");
+printf("|--------------------------------------------|\n");
+printf("|1-Nombre total d'animaux.                   |\n");
+printf("|2-Age Moyen des animaux.                    |\n");
+printf("|3-Plus vieux et plus jeune animaux.         |\n");
+printf("|4-L'animaux le plus represente.             |\n");
+printf("|--------------------------------------------|\n");
+printf("|Autre touche pour retourner.                |\n");
+printf("|--------------------------------------------|\n\n\n");
+
+scanf(" %c", &option);
+switch (option) {
+case '1':
+  break;
+case '2':
+  break;
+case '3':
+  break;
+case '4':
+    break;
+default:
+  system("clear");
+  break;
+}
+}
+
 int main() {
   struct Animal animaux[200] = {
       {0, "Simba", "Lion", 5, "Savane", 190.5},
@@ -435,7 +467,8 @@ int main() {
     printf("|4-Modifier un animal.                       |\n");
     printf("|5-Rechercher un animal.                     |\n");
     printf("|6-Supprimer un animal.                      |\n");
-    printf("|7-Quitter                                   |\n");
+    printf("|7-Statistiques.                             |\n");
+    printf("|8-Quitter                                   |\n");
     printf("+============================================+\n");
     scanf(" %c", &option);
     system("clear");
@@ -460,7 +493,10 @@ int main() {
       supp(animaux);
       count--;
       break;
-    case '7':
+        case '7':
+        stat(animaux);
+      break;
+    case '8':
       printf("Au Revoir.\n");
       break;
     default:
