@@ -405,7 +405,62 @@ void supp(struct Animal p[]) {
 
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs
 
+//moyen age
+float moyage(struct Animal p[]){
+  float moyen =0;
+  for (int i=0;i<count;i++) {
+  moyen = p[i].age + moyen;
+  }
+  moyen = moyen / count;
+return moyen;
+}
 
+// min max
+void jeune(struct Animal p[]){
+int min =90,max =0;
+  int mindex,maxdex;
+
+for (int i=0;i<count;i++) {
+    if (p[i].age < min) {
+      min = p[i].age;
+      mindex = p[i].id;
+    }
+  }
+
+for (int i=0;i<count;i++) {
+    if (p[i].age > max) {
+      max = p[i].age;
+      maxdex = p[i].id;
+    }
+  }
+
+printf("|--------------------------------------------|\n");
+printf("|Le plus jeune d'animaux:                    \n");
+printf("|--------------------------------------------|\n\n\n");
+    printf("|ID:       %d \n", p[mindex].id);
+    printf("|Nom:      %s   \n", p[mindex].nom);
+    printf("|Espece:   %s   \n", p[mindex].espece);
+    printf("|Habitat:  %s   \n", p[mindex].habitat);
+    printf("|Age:      %d   \n", p[mindex].age);
+    printf("|Poids:   %.2fKg \n", p[mindex].poids);
+    printf("|---------------------------|\n\n\n");
+
+printf("|--------------------------------------------|\n");
+printf("|Le plus vieux d'animaux:                    \n");
+printf("|--------------------------------------------|\n\n\n");
+    printf("|ID:       %d \n", p[maxdex].id);
+    printf("|Nom:      %s   \n", p[maxdex].nom);
+    printf("|Espece:   %s   \n", p[maxdex].espece);
+    printf("|Habitat:  %s   \n", p[maxdex].habitat);
+    printf("|Age:      %d   \n", p[maxdex].age);
+    printf("|Poids:   %.2fKg \n", p[maxdex].poids);
+    printf("|---------------------------|\n");
+
+
+
+}
+
+// Stats menu
 void stat(struct Animal p[]){
 printf("+--------------------------------------------+\n");
 printf("|                  Statistiques              |\n");
@@ -421,10 +476,17 @@ printf("|--------------------------------------------|\n\n\n");
 scanf(" %c", &option);
 switch (option) {
 case '1':
+printf("|--------------------------------------------|\n");
+printf("|Nombre total des animaux %d                 |\n",count);
+printf("|--------------------------------------------|\n\n\n");
   break;
 case '2':
+printf("|--------------------------------------------|\n");
+printf("|L'age Moyen des animaux: %.2f |\n",moyage(p));
+printf("|--------------------------------------------|\n\n\n");
   break;
 case '3':
+      jeune(p);
   break;
 case '4':
     break;
