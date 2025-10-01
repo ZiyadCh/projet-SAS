@@ -16,6 +16,9 @@ struct Animal {
   float poids;
 };
 
+//-------------------------------------------
+//----------------------------------------
+//----------------------------------------
 struct Animal ajouter() {
   struct Animal p;
 
@@ -61,6 +64,9 @@ void ajp(struct Animal p[]) {
   }
 };
 
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
 void affid(struct Animal p[]) {
   struct Animal tmp;
   for (int i = 0; i < count; i++) {
@@ -193,6 +199,9 @@ void afficher(struct Animal p[]) {
   }
 }
 
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
 void modage(struct Animal p[]) {
   int f;
   int exist = 0;
@@ -251,6 +260,9 @@ void modifier(struct Animal p[]) {
   }
 }
 
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
 void supp(struct Animal p[]) {
   int f;
   int exist = 0;
@@ -272,7 +284,8 @@ void supp(struct Animal p[]) {
 }
 
 //
-// Search espece
+//----------------------------------------
+//----------------------------------------
 void sespece(struct Animal p[]) {
   char f[10];
   int exist = 0;
@@ -298,7 +311,9 @@ void sespece(struct Animal p[]) {
   }
 }
 
-// Search Nom
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
 void snom(struct Animal p[]) {
   char f[10];
   int exist = 0;
@@ -350,7 +365,7 @@ void sid(struct Animal p[]) {
   }
 }
 
-// Menu Search
+//----------------------------------------
 void chercher(struct Animal p[]) {
   printf("+--------------------------------------------+\n");
   printf("|                   Rechercher               |\n");
@@ -380,7 +395,9 @@ void chercher(struct Animal p[]) {
 }
 //
 
-// moyen age
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
 float moyage(struct Animal p[]) {
   float moyen = 0;
   for (int i = 0; i < count; i++) {
@@ -427,7 +444,6 @@ void jeune(struct Animal p[]) {
   printf("|Age:      %d   \n", p[maxdex].age);
   printf("|Poids:   %.2fKg \n", p[maxdex].poids);
 }
-// plus frequent espece
 void frequent(struct Animal p[]) {
   int representations[count];
   int max = 0;
@@ -453,7 +469,6 @@ void frequent(struct Animal p[]) {
   printf("|--------------------------------------------|\n");
 }
 
-// Stats menu
 void stat(struct Animal p[]) {
   printf("+--------------------------------------------+\n");
   printf("|                  Statistiques              |\n");
@@ -490,6 +505,12 @@ void stat(struct Animal p[]) {
   }
 }
 
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
+//----------------------------------------
 //
 int main() {
   struct Animal animaux[200] = {
