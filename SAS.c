@@ -137,26 +137,27 @@ void affn(struct Animal p[]) {
   }
 }
 
-void affhabitat(struct Animal p[]){
+// Afficher Habitat
+void affhabitat(struct Animal p[]) {
   char hab[10];
   printf("+--------------------------------------------+\n");
   printf("|Entrer Habitat:                             |\n");
-  scanf("%s",hab);
+  scanf("%s", hab);
   hab[0] = toupper(hab[0]);
-  for (int i =0;i<count;i++) {
-    if (strcmp(hab,p[i].habitat) == 0) {
-    printf("|ID:       %d \n", p[i].id);
-    printf("|Nom:      %s   \n", p[i].nom);
-    printf("|Espece:   %s   \n", p[i].espece);
-    printf("|Habitat:  %s   \n", p[i].habitat);
-    printf("|Age:      %d   \n", p[i].age);
-    printf("|Poids:    %.2fKg \n", p[i].poids);
-    printf("|---------------------------|\n");
- 
+  for (int i = 0; i < count; i++) {
+    if (strcmp(hab, p[i].habitat) == 0) {
+      printf("|ID:       %d \n", p[i].id);
+      printf("|Nom:      %s   \n", p[i].nom);
+      printf("|Espece:   %s   \n", p[i].espece);
+      printf("|Habitat:  %s   \n", p[i].habitat);
+      printf("|Age:      %d   \n", p[i].age);
+      printf("|Poids:    %.2fKg \n", p[i].poids);
+      printf("|---------------------------|\n");
     }
   }
 }
 
+// Menu affichage
 void afficher(struct Animal p[]) {
   printf("+--------------------------------------------+\n");
   printf("|                    Afficher                |\n");
@@ -166,7 +167,7 @@ void afficher(struct Animal p[]) {
   printf("|3-Afficher par age.                         |\n");
   printf("|4-Afficher les animaus d'un habitant.       |\n");
   printf("|--------------------------------------------|\n");
-  printf("|Autre touche- retourner.                    |\n");
+  printf("|Autre touche pour retourner.                |\n");
   printf("|--------------------------------------------|\n\n\n");
 
   scanf(" %c", &option);
@@ -180,8 +181,77 @@ void afficher(struct Animal p[]) {
   case '3':
     affage(p);
     break;
-    case '4':
+  case '4':
     affhabitat(p);
+    break;
+  default:
+    system("clear");
+    break;
+  }
+}
+
+// modifier AGe
+void modage(struct Animal p[]) {
+  int f;
+  int exist = 0;
+
+  printf("|     Entrer l'id l'animaux pour modifier l'age   |\n");
+  printf("+-------------------------------------------------+\n");
+  scanf("%d",&f);
+  for (int i = 0; i < count; i++) {
+    if ( f == p[i].id) {
+      printf("- Entrer nouveau age :\n");
+      scanf("%d",&p[i].age);
+      exist = 1;
+    }
+  }
+
+  if (exist == 0) {
+    printf("C'et animaux n'exist pas !!\n");
+  }
+}
+// Modifier Habitat
+void modhabit(struct Animal p[]) {
+  int f;
+  int exist = 0;
+
+  printf("|  Entrer l'id l'animaux pour modifier l'habitat  |\n");
+  printf("+-------------------------------------------------+\n");
+  scanf("%d",&f);
+  for (int i = 0; i < count; i++) {
+    if ( f == p[i].id) {
+      printf("- Entrer Nouveau habitat d'animaux:\n");
+      scanf("%s", p[i].habitat);
+      p[i].habitat[0] = toupper(p[i].habitat[0]);
+      exist = 1;
+    }
+  }
+
+
+  if (exist == 0) {
+    printf("C'et animaux n'exist pas !!\n");
+  }
+}
+
+// Modifier
+void modifier(struct Animal p[]) {
+
+  printf("+--------------------------------------------+\n");
+  printf("|                    Modifier                |\n");
+  printf("|--------------------------------------------|\n");
+  printf("|1-Modifier Age.                             |\n");
+  printf("|2-Modifier Habitat.                         |\n");
+  printf("|--------------------------------------------|\n");
+  printf("|Autre touche pour retourner.                |\n");
+  printf("|--------------------------------------------|\n\n\n");
+
+  scanf(" %c", &option);
+  switch (option) {
+  case '1':
+    modage(p);
+    break;
+  case '2':
+    modhabit(p);
     break;
   default:
     system("clear");
@@ -242,6 +312,7 @@ int main() {
       afficher(animaux);
       break;
     case '4':
+      modifier(animaux);
       break;
     case '5':
       break;
