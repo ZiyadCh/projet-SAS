@@ -54,6 +54,7 @@ void ajp(struct Animal p[]) {
     count++;
   }
 };
+
 //****************************************************
 //******* AFFICHAGE ***********************************
 //*************************************************
@@ -111,7 +112,6 @@ void affage(struct Animal p[]) {
 }
 
 // afficher par NOM
-
 void affn(struct Animal p[]) {
   struct Animal tmp;
 
@@ -190,6 +190,9 @@ void afficher(struct Animal p[]) {
   }
 }
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++Modifier++++++++++++++++++++++++++++++++++++++++++
 // modifier AGe
 void modage(struct Animal p[]) {
   int f;
@@ -197,11 +200,11 @@ void modage(struct Animal p[]) {
 
   printf("|     Entrer l'id l'animaux pour modifier l'age   |\n");
   printf("+-------------------------------------------------+\n");
-  scanf("%d",&f);
+  scanf("%d", &f);
   for (int i = 0; i < count; i++) {
-    if ( f == p[i].id) {
+    if (f == p[i].id) {
       printf("- Entrer nouveau age :\n");
-      scanf("%d",&p[i].age);
+      scanf("%d", &p[i].age);
       exist = 1;
     }
   }
@@ -217,17 +220,15 @@ void modhabit(struct Animal p[]) {
 
   printf("|  Entrer l'id l'animaux pour modifier l'habitat  |\n");
   printf("+-------------------------------------------------+\n");
-  scanf("%d",&f);
+  scanf("%d", &f);
   for (int i = 0; i < count; i++) {
-    if ( f == p[i].id) {
+    if (f == p[i].id) {
       printf("- Entrer Nouveau habitat d'animaux:\n");
       scanf("%s", p[i].habitat);
       p[i].habitat[0] = toupper(p[i].habitat[0]);
       exist = 1;
     }
   }
-
-
   if (exist == 0) {
     printf("C'et animaux n'exist pas !!\n");
   }
@@ -259,10 +260,149 @@ void modifier(struct Animal p[]) {
   }
 }
 
-// 00000000000000MAIN000000000000000000
-int main() {
+//------------------------------------------------------
+//-------------------------------------------------------
+// Search
+// -----------------------------------------------------
 
-  // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+// Search espece
+void sespece(struct Animal p[]) {
+  char f[10];
+  int exist = 0;
+
+  printf("| Entrer l'espece d'animaux |\n");
+  printf("+---------------------------+\n");
+  scanf("%s", f);
+  f[0] = toupper(f[0]);
+  for (int i = 0; i < count; i++) {
+    if (strcmp(f, p[i].espece) == 0) {
+      printf("|ID:       %d \n", p[i].id);
+      printf("|Nom:      %s   \n", p[i].nom);
+      printf("|Espece:   %s   \n", p[i].espece);
+      printf("|Habitat:  %s   \n", p[i].habitat);
+      printf("|Age:      %d   \n", p[i].age);
+      printf("|Poids:    %.2fKg \n", p[i].poids);
+      printf("|---------------------------|\n");
+      exist = 1;
+    }
+  }
+  if (exist == 0) {
+    printf("C'et animaux n'exist pas !!\n");
+  }
+}
+
+// Search Nom
+void snom(struct Animal p[]) {
+  char f[10];
+  int exist = 0;
+
+  printf("|  Entrer le nom  d'animaux |\n");
+  printf("+---------------------------+\n");
+  scanf("%s", f);
+  f[0] = toupper(f[0]);
+  for (int i = 0; i < count; i++) {
+    if (strcmp(f, p[i].nom) == 0) {
+      printf("|ID:       %d \n", p[i].id);
+      printf("|Nom:      %s   \n", p[i].nom);
+      printf("|Espece:   %s   \n", p[i].espece);
+      printf("|Habitat:  %s   \n", p[i].habitat);
+      printf("|Age:      %d   \n", p[i].age);
+      printf("|Poids:    %.2fKg \n", p[i].poids);
+      printf("|---------------------------|\n");
+      exist = 1;
+    }
+  }
+  if (exist == 0) {
+    printf("C'et animaux n'exist pas !!\n");
+  }
+}
+// Search id
+void sid(struct Animal p[]) {
+  int f;
+  int exist = 0;
+
+  printf("|  Entrer l'id d'animaux    |\n");
+  printf("+---------------------------+\n");
+  scanf("%d", &f);
+  for (int i = 0; i < count; i++) {
+    if (f == p[i].id) {
+
+      printf("|ID:       %d \n", p[i].id);
+      printf("|Nom:      %s   \n", p[i].nom);
+      printf("|Espece:   %s   \n", p[i].espece);
+      printf("|Habitat:  %s   \n", p[i].habitat);
+      printf("|Age:      %d   \n", p[i].age);
+      printf("|Poids:    %.2fKg \n", p[i].poids);
+      printf("|---------------------------|\n");
+      exist = 1;
+    }
+  }
+
+  if (exist == 0) {
+    printf("C'et animaux n'exist pas !!\n");
+  }
+}
+
+// Menu Search
+void chercher(struct Animal p[]) {
+  printf("+--------------------------------------------+\n");
+  printf("|                   Rechercher               |\n");
+  printf("|--------------------------------------------|\n");
+  printf("|1-Par Id.                                   |\n");
+  printf("|2-Par nom.                                  |\n");
+  printf("|3-Par espece.                               |\n");
+  printf("|--------------------------------------------|\n");
+  printf("|Autre touche pour retourner.                |\n");
+  printf("|--------------------------------------------|\n\n\n");
+
+  scanf(" %c", &option);
+  switch (option) {
+  case '1':
+    sid(p);
+    break;
+  case '2':
+    snom(p);
+    break;
+  case '3':
+    sespece(p);
+    break;
+  default:
+    system("clear");
+    break;
+  }
+}
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx
+// Supprimer
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx
+
+void supp(struct Animal p[]) {
+  int f;
+  int exist = 0;
+
+  printf("|  Entrer l'id d'animaux    |\n");
+  printf("+---------------------------+\n");
+  scanf("%d", &f);
+  for (int j = 0; j < count; j++) {
+
+    if (f == p[j].id) {
+
+      for (int i = f; i < count -1; i++) {
+        p[i] = p[i + 1];
+      }
+        exist = 1;
+
+    }
+
+  }
+
+  if (exist == 0) {
+    printf("C'et animaux n'exist pas !!\n");
+  }
+}
+
+int main() {
   struct Animal animaux[200] = {
       {0, "Simba", "Lion", 5, "Savane", 190.5},
       {1, "Nala", "Lion", 4, "Savane", 175},
@@ -284,7 +424,6 @@ int main() {
       {17, "Donatello", "Tortue", 40, "Riviere", 90.5},
       {18, "Polly", "Oiseau", 5, "Jungle", 1.5},
       {19, "Kong", "Gorille", 13, "Jungle", 180}};
-  // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
   while (option != '7') {
     printf("+============================================+\n");
@@ -315,8 +454,11 @@ int main() {
       modifier(animaux);
       break;
     case '5':
+      chercher(animaux);
       break;
     case '6':
+      supp(animaux);
+      count--;
       break;
     case '7':
       printf("Au Revoir.\n");
