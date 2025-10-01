@@ -473,23 +473,23 @@ void frequent(struct Animal p[]) {
   int max = 0;
   for (int i = 0; i < count; i++) {
     representations[i] = 0;
-
     for (int j = 0; j < count; j++) {
-      if (strcmp(p[j].espece,p[i].espece) == 0) {
+      if (strcmp(p[j].espece, p[i].espece) == 0) {
         representations[i]++;
       }
     }
-  
   }
 
-  for (int i = 0;i<count;i++) {
-   if (representations[i]>max) {
+  char fespece[10];
+  for (int i = 0; i < count; i++) {
+    if (representations[i] > max) {
       max = representations[i];
-    } 
+      strcpy(fespece,p[i].espece);
+    }
   }
 
   printf("|--------------------------------------------|\n");
-  printf("Le plus represente est: %d. \n",max);
+  printf("Le plus represente est: %s %d. \n",fespece, max);
   printf("|--------------------------------------------|\n");
 }
 
