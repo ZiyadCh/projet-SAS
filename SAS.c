@@ -388,7 +388,7 @@ void supp(struct Animal p[]) {
 
     if (f == p[j].id) {
 
-      for (int i = f; i < count -1; i++) {
+      for (int i = j; i < count -1; i++) {
         p[i] = p[i + 1];
       }
         exist = 1;
@@ -457,7 +457,7 @@ int main() {
       {18, "Polly", "Oiseau", 5, "Jungle", 1.5},
       {19, "Kong", "Gorille", 13, "Jungle", 180}};
 
-  while (option != '7') {
+  while (option != '8') {
     printf("+============================================+\n");
     printf("|                    ZOO                     |\n");
     printf("+============================================+\n");
