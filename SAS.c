@@ -31,22 +31,31 @@ struct Animal ajouter() {
   printf("-Entrer l'age:\n");
   while (scanf("%d", &p.age) != 1) {
     getchar();
-    printf("re-Entrerr age!!\n");
+    printf("invalide!! ressayer\n");
   }
 
   printf("-Entrer le nom d'animaux:\n");
   scanf("%s", p.nom);
-  p.nom[0] = toupper(p.nom[0]);
+  for (int i = 0; p.nom[i]; i++) {
+    p.nom[i] = toupper(p.nom[i]);
+  }
+
   printf("- Entrer l'espece d'animaux:\n");
   scanf("%s", p.espece);
-  p.espece[0] = toupper(p.espece[0]);
+  for (int i = 0; p.espece[i]; i++) {
+    p.espece[i] = toupper(p.espece[i]);
+  }
+
   printf("- Selectionner l'habitat d'animaux:\n");
   scanf("%s", p.habitat);
-  p.habitat[0] = toupper(p.habitat[0]);
+  for (int i = 0; p.habitat[i]; i++) {
+    p.habitat[i] = toupper(p.habitat[i]);
+  }
+
   printf("-Entrer le poids d'animal:\n");
   while (scanf("%f", &p.poids) != 1) {
     getchar();
-    printf("re-Entrerr le poids\n");
+    printf("invalide!! ressayer\n");
   }
 
   return p;
@@ -56,7 +65,12 @@ void ajp(struct Animal p[]) {
   int time;
   printf("--------------------------------\n");
   printf("Nombre d'animaux a ajouter:\n");
-  scanf("%d", &time);
+
+  while (scanf("%d", &time) != 1) {
+    getchar();
+    printf("invalide!! ressayer\n");
+  }
+
   for (int i = 0; i < time; i++) {
     printf("--------- Animal %d -----\n", i + 1);
     p[count] = ajouter();
@@ -150,7 +164,9 @@ void affhabitat(struct Animal p[]) {
   printf("+--------------------------------------------+\n");
   printf("|Entrer Habitat:                             |\n");
   scanf("%s", hab);
-  hab[0] = toupper(hab[0]);
+  for (int i = 0; hab[i]; i++) {
+    hab[i] = toupper(hab[i]);
+  }
   for (int i = 0; i < count; i++) {
     if (strcmp(hab, p[i].habitat) == 0) {
       printf("|ID:       %d \n", p[i].id);
@@ -207,11 +223,19 @@ void modage(struct Animal p[]) {
   int exist = 0;
   printf("|     Entrer l'id l'animaux pour modifier l'age   |\n");
   printf("+-------------------------------------------------+\n");
-  scanf("%d", &f);
+
+  while (scanf("%d", &f) != 1) {
+    getchar();
+    printf("invalide!! ressayer\n");
+  }
   for (int i = 0; i < count; i++) {
     if (f == p[i].id) {
       printf("- Entrer nouveau age :\n");
-      scanf("%d", &p[i].age);
+
+      while (scanf("%d", &p[i].age) != 1) {
+        getchar();
+        printf("invalide!! ressayer\n");
+      }
       exist = 1;
     }
   }
@@ -224,12 +248,19 @@ void modhabit(struct Animal p[]) {
   int exist = 0;
   printf("|  Entrer l'id l'animaux pour modifier l'habitat  |\n");
   printf("+-------------------------------------------------+\n");
-  scanf("%d", &f);
+  while (scanf("%d", &f) != 1) {
+    getchar();
+    printf("invalide!! ressayer\n");
+  }
   for (int i = 0; i < count; i++) {
     if (f == p[i].id) {
       printf("- Entrer Nouveau habitat d'animaux:\n");
+
       scanf("%s", p[i].habitat);
-      p[i].habitat[0] = toupper(p[i].habitat[0]);
+      for (int j = 0; p[i].habitat[j]; j++) {
+        p[i].habitat[j] = toupper(p[i].habitat[j]);
+      }
+
       exist = 1;
     }
   }
@@ -268,7 +299,10 @@ void supp(struct Animal p[]) {
   int exist = 0;
   printf("|  Entrer l'id d'animaux    |\n");
   printf("+---------------------------+\n");
-  scanf("%d", &f);
+  while (scanf("%d", &f) != 1) {
+    getchar();
+    printf("invalide!! ressayer\n");
+  }
   for (int j = 0; j < count; j++) {
     if (f == p[j].id) {
       for (int i = j; i < count - 1; i++) {
@@ -293,7 +327,10 @@ void sespece(struct Animal p[]) {
   printf("| Entrer l'espece d'animaux |\n");
   printf("+---------------------------+\n");
   scanf("%s", f);
-  f[0] = toupper(f[0]);
+  scanf("%s", f);
+  for (int i = 0; f[i]; i++) {
+    f[i] = toupper(f[i]);
+  }
   for (int i = 0; i < count; i++) {
     if (strcmp(f, p[i].espece) == 0) {
       printf("|ID:       %d \n", p[i].id);
@@ -321,7 +358,9 @@ void snom(struct Animal p[]) {
   printf("|  Entrer le nom  d'animaux |\n");
   printf("+---------------------------+\n");
   scanf("%s", f);
-  f[0] = toupper(f[0]);
+  for (int i = 0; f[i]; i++) {
+    f[i] = toupper(f[i]);
+  }
   for (int i = 0; i < count; i++) {
     if (strcmp(f, p[i].nom) == 0) {
       printf("|ID:       %d \n", p[i].id);
@@ -345,7 +384,10 @@ void sid(struct Animal p[]) {
 
   printf("|  Entrer l'id d'animaux    |\n");
   printf("+---------------------------+\n");
-  scanf("%d", &f);
+  while (scanf("%d", &f) != 1) {
+    getchar();
+    printf("invalide!! ressayer\n");
+  }
   for (int i = 0; i < count; i++) {
     if (f == p[i].id) {
 
@@ -513,27 +555,28 @@ void stat(struct Animal p[]) {
 //----------------------------------------
 //
 int main() {
+
   struct Animal animaux[200] = {
-      {1, "Simba", "Lion", 5, "Savane", 190.5},
-      {2, "Nala", "Lion", 4, "Savane", 175},
-      {3, "ShereKhan", "Tigre", 8, "Jungle", 220.3},
-      {4, "Baloo", "Ours", 12, "Foret", 310},
-      {5, "Raja", "Elephant", 15, "Savane", 540.7},
-      {6, "Marty", "Zebre", 6, "Savane", 300.2},
-      {7, "Gloria", "Hippopotame", 10, "Riviere", 450},
-      {8, "Alex", "Lion", 7, "Savane", 200},
-      {9, "Julien", "Lemurien", 3, "Jungle", 12.5},
-      {10, "Melman", "Girafe", 9, "Savane", 390.8},
-      {11, "Timon", "Suricate", 2, "Desert", 1.2},
-      {12, "Pumbaa", "Phacocheres", 5, "Savane", 120},
-      {13, "Scar", "Lion", 11, "Savane", 210.4},
-      {14, "Kaa", "Serpent", 6, "Jungle", 45},
-      {15, "Iko", "Perroquet", 4, "Jungle", 2.1},
-      {16, "Dumbo", "Elephant", 3, "Savane", 320},
-      {17, "Kiki", "Chien sauvage", 7, "Savane", 25},
-      {18, "Donatello", "Tortue", 40, "Riviere", 90.5},
-      {19, "Polly", "Oiseau", 5, "Jungle", 1.5},
-      {20, "Kong", "Gorille", 13, "Jungle", 180}};
+      {1, "SIMBA", "LION", 5, "SAVANE", 190.5},
+      {2, "NALA", "LION", 4, "SAVANE", 175},
+      {3, "SHEREKHAN", "TIGRE", 8, "JUNGLE", 220.3},
+      {4, "BALOO", "OURS", 12, "FORET", 310},
+      {5, "RAJA", "ELEPHANT", 15, "SAVANE", 540.7},
+      {6, "MARTY", "ZEBRE", 6, "SAVANE", 300.2},
+      {7, "GLORIA", "HIPPOPOTAME", 10, "RIVIERE", 450},
+      {8, "ALEX", "LION", 7, "SAVANE", 200},
+      {9, "JULIEN", "LEMURIEN", 3, "JUNGLE", 12.5},
+      {10, "MELMAN", "GIRAFFE", 9, "SAVANE", 390.8},
+      {11, "TIMON", "SURICATE", 2, "DESERT", 1.2},
+      {12, "PUMBAA", "PHACOCHERES", 5, "SAVANE", 120},
+      {13, "SCAR", "LION", 11, "SAVANE", 210.4},
+      {14, "KAA", "SERPENT", 6, "JUNGLE", 45},
+      {15, "IKO", "PERROQUET", 4, "JUNGLE", 2.1},
+      {16, "DUMBO", "ELEPHANT", 3, "SAVANE", 320},
+      {17, "KIKI", "CHIEN SAUVAGE", 7, "SAVANE", 25},
+      {18, "DONATELLO", "TORTUE", 40, "RIVIERE", 90.5},
+      {19, "POLLY", "OISEAU", 5, "JUNGLE", 1.5},
+      {20, "KONG", "GORILLE", 13, "JUNGLE", 180}};
 
   while (option != '8') {
     printf("+============================================+\n");
