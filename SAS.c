@@ -81,10 +81,10 @@ void affid(struct Animal p[]) {
     printf("|Habitat:  %s   \n", p[i].habitat);
     printf("|Age:      %d   \n", p[i].age);
     printf("|Poids:    %.2fKg \n", p[i].poids);
- if (p[i].age > 20) {
+    if (p[i].age > 20) {
       printf("|---------------------------|\n");
-        printf("!!!! AGE CRITIQUE !!!!\n");
-       }
+      printf("!!!! AGE CRITIQUE !!!!\n");
+    }
     printf("|---------------------------|\n");
   }
 }
@@ -111,10 +111,10 @@ void affage(struct Animal p[]) {
     printf("|Habitat:  %s   \n", p[i].habitat);
     printf("|Age:      %d   \n", p[i].age);
     printf("|Poids:    %.2fKg \n", p[i].poids);
- if (p[i].age > 20) {
+    if (p[i].age > 20) {
       printf("|---------------------------|\n");
-        printf("!!!! AGE CRITIQUE !!!!\n");
-       }
+      printf("!!!! AGE CRITIQUE !!!!\n");
+    }
     printf("|---------------------------|\n");
   }
 }
@@ -141,10 +141,10 @@ void affn(struct Animal p[]) {
     printf("|Habitat:  %s   \n", p[i].habitat);
     printf("|Age:      %d   \n", p[i].age);
     printf("|Poids:    %.2fKg \n", p[i].poids);
-     if (p[i].age > 20) {
+    if (p[i].age > 20) {
       printf("|---------------------------|\n");
-        printf("!!!! AGE CRITIQUE !!!!\n");
-       }
+      printf("!!!! AGE CRITIQUE !!!!\n");
+    }
     printf("|---------------------------|\n");
   }
 }
@@ -164,12 +164,11 @@ void affhabitat(struct Animal p[]) {
       printf("|Habitat:  %s   \n", p[i].habitat);
       printf("|Age:      %d   \n", p[i].age);
       printf("|Poids:    %.2fKg \n", p[i].poids);
-       if (p[i].age > 20) {
-      printf("|---------------------------|\n");
+      if (p[i].age > 20) {
+        printf("|---------------------------|\n");
         printf("!!!! AGE CRITIQUE !!!!\n");
-       }
+      }
       printf("|---------------------------|\n");
-     
     }
   }
 }
@@ -468,6 +467,31 @@ void jeune(struct Animal p[]) {
   printf("|Age:      %d   \n", p[maxdex].age);
   printf("|Poids:   %.2fKg \n", p[maxdex].poids);
 }
+// plus frequent espece
+void frequent(struct Animal p[]) {
+  int representations[count];
+  int max = 0;
+  for (int i = 0; i < count; i++) {
+    representations[i] = 0;
+
+    for (int j = 0; j < count; j++) {
+      if (strcmp(p[j].espece,p[i].espece) == 0) {
+        representations[i]++;
+      }
+    }
+  
+  }
+
+  for (int i = 0;i<count;i++) {
+   if (representations[i]>max) {
+      max = representations[i];
+    } 
+  }
+
+  printf("|--------------------------------------------|\n");
+  printf("Le plus represente est: %d. \n",max);
+  printf("|--------------------------------------------|\n");
+}
 
 // Stats menu
 void stat(struct Animal p[]) {
@@ -498,6 +522,7 @@ void stat(struct Animal p[]) {
     jeune(p);
     break;
   case '4':
+    frequent(p);
     break;
   default:
     system("clear");
