@@ -70,12 +70,17 @@ void ajp(struct Animal p[]) {
     getchar();
     printf("invalide!! ressayer\n");
   }
-
-  for (int i = 0; i < time; i++) {
+  if (time > 200 - count) {
+    printf("Depaces le maximum d'animaux\n");
+  }
+  else {
+for (int i = 0; i < time; i++) {
     printf("--------- Animal %d -----\n", i + 1);
     p[count] = ajouter();
     count++;
   }
+  }
+
 };
 
 //----------------------------------------
